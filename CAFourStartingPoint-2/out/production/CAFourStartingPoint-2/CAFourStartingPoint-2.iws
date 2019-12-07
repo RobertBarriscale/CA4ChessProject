@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66c093b4-82db-4218-9b9b-ea8c0b86903f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CAFourStartingPoint-2.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/CAFourStartingPoint-2.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CAFourStartingPoint-2.iws" beforeDir="false" afterPath="$PROJECT_DIR$/CAFourStartingPoint-2.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChessProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/CAFourStartingPoint-2.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/CAFourStartingPoint-2.ipr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/CAFourStartingPoint-2.iws" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/CAFourStartingPoint-2.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/META-INF/CAFourStartingPoint-2.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/ChessProject.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

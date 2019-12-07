@@ -71,11 +71,11 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 
         // Setting up the Initial Chess board.
 
-  	/*for(int i=8;i < 16; i++){
+  	for(int i=8;i < 16; i++){
        		pieces = new JLabel( new ImageIcon("WhitePawn.png") );
 			panels = (JPanel)chessBoard.getComponent(i);
 	        panels.add(pieces);
-		}*/
+		}
 		pieces = new JLabel( new ImageIcon("WhiteRook.png") );
 		panels = (JPanel)chessBoard.getComponent(0);
 	    panels.add(pieces);
@@ -136,7 +136,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
       temporary = new Stack();
     }
 
-    private Stack getWhiteAttackingSquares(Stack pieces){
+   /* private Stack getWhiteAttackingSquares(Stack pieces){
         while(!pieces.empty()){
             Square s = (Square)pieces.pop();
             String tmpString = s.getName();
@@ -148,10 +148,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
                 }
             }
             else if(tmpString.contains("Bishop")){
-                
+
             }
         }
-    }
+    } */
 
 /*
   Method to check were a Black Pawn can move to. There are two main conditions here. Either the Black Pawn is in
@@ -163,8 +163,9 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 private Stack getWhitePawnSquares(int x, int y, String piece){
     Square startingSquare = new Square(x , y , piece);
     Stack moves = new Stack();
-    int tmpx1 = x+1;
-    int tmpx2 = x-1; /* The pawn is only allowed to move in the x direction when capturing a piece */
+    Move validM;
+    int tmpx = x+1;
+    //int tmpx2 = x-1; /* The pawn is only allowed to move in the x direction when capturing a piece */
     int tmpy = y+1; /* The pawn is not allowed to move backwards */
 
 // To be completed...
@@ -185,6 +186,16 @@ private Stack getWhitePawnSquares(int x, int y, String piece){
      diagonal to it.
 
      */
+
+    if(!((tmpy > 7))){//this prevents the piece from falling off the board
+      if(y==1){
+        Square tmp = new Square(tmpx, tmpy, piece);
+        validM = new Move(startingSquare, tmp);
+        if(!piecePresent(((tmp.getXC()*75)+20), ((tmp.getYC()*75)+20))){
+          moves.push(validM);
+        }
+      }
+    }
 
   return moves;
 }
@@ -811,6 +822,23 @@ private void getLandingSquares(Stack found){
     }
     return squares;
   }
+
+     /* private Stack getWhiteAttackingSquares(Stack pieces){
+        while(!pieces.empty()){
+            Square s = (Square)pieces.pop();
+            String tmpString = s.getName();
+            if(tmpString.contains("Knight")){
+                tempK = getKnightMoves(s.getXC(), s.getYC(), s.getName());
+                while(!tempK.empty()){
+                    Square tempKnight = (Square)tempK.pop();
+                    knight.push(tempKnight);
+                }
+            }
+            else if(tmpString.contains("Bishop")){
+
+            }
+        }
+    } */
 
 	/*
 		This method checks if there is a piece present on a particular square.
