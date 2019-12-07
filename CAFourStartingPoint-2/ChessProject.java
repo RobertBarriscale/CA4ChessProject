@@ -70,8 +70,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         }
 
         // Setting up the Initial Chess board.
-/*
-  	for(int i=8;i < 16; i++){
+
+  	/*for(int i=8;i < 16; i++){
        		pieces = new JLabel( new ImageIcon("WhitePawn.png") );
 			panels = (JPanel)chessBoard.getComponent(i);
 	        panels.add(pieces);
@@ -136,6 +136,23 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
       temporary = new Stack();
     }
 
+    private Stack getWhiteAttackingSquares(Stack pieces){
+        while(!pieces.empty()){
+            Square s = (Square)pieces.pop();
+            String tmpString = s.getName();
+            if(tmpString.contains("Knight")){
+                tempK = getKnightMoves(s.getXC(), s.getYC(), s.getName());
+                while(!tempK.empty()){
+                    Square tempKnight = (Square)tempK.pop();
+                    knight.push(tempKnight);
+                }
+            }
+            else if(tmpString.contains("Bishop")){
+                
+            }
+        }
+    }
+
 /*
   Method to check were a Black Pawn can move to. There are two main conditions here. Either the Black Pawn is in
   its starting position in which case it can move either one or two squares or it has already moved and the it can only
@@ -144,9 +161,30 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
   method).
 */
 private Stack getWhitePawnSquares(int x, int y, String piece){
-  Stack moves = new Stack();
+    Square startingSquare = new Square(x , y , piece);
+    Stack moves = new Stack();
+    int tmpx1 = x+1;
+    int tmpx2 = x-1; /* The pawn is only allowed to move in the x direction when capturing a piece */
+    int tmpy = y+1; /* The pawn is not allowed to move backwards */
 
 // To be completed...
+    /*
+                                       _|___________|_________|___________|_
+                                        |           |         |           |
+                                        |           |         |           |
+                                       _|___________|_________|___________|_
+                                        |           |         |           |
+                                        |           | (x, y)  |           |
+                                       _|___________|_________|___________|_
+                                        |           |         |           |
+                                        |(x-1, y+1) | (x, y+1)|(x+1, y+1) |
+                                       _|___________|_________|___________|_
+                                        |           |         |           |
+
+     The Diagram above shows the legal movement for the white pawn after its first movement. It will only move down the board and will only move diagonally when an enemy piece is
+     diagonal to it.
+
+     */
 
   return moves;
 }
@@ -370,7 +408,7 @@ private Stack getKingSquares(int x, int y, String piece){
     }
   }
   return moves;
-} // end of the method getKingSquares()
+}  // end of the method getKingSquares()
 
 
 /*
@@ -846,18 +884,18 @@ private void printStack(Stack input){
           We need to identify all the possible moves that can be made by the AI Opponent
       */
       if(tmpString.contains("Knight")){
-    //    tmpMoves = getKnightMoves(s.getXC(), s.getYC(), s.getName());
+        tmpMoves = getKnightMoves(s.getXC(), s.getYC(), s.getName());
       }
       else if(tmpString.contains("Bishop")){
-    //    tmpMoves = getBishopMoves(s.getXC(), s.getYC(), s.getName());
+        tmpMoves = getBishopMoves(s.getXC(), s.getYC(), s.getName());
       }
       else if(tmpString.contains("Pawn")){
       }
       else if(tmpString.contains("Rook")){
-      //  tmpMoves = getRookMoves(s.getXC(), s.getYC(), s.getName());
+        tmpMoves = getRookMoves(s.getXC(), s.getYC(), s.getName());
       }
       else if(tmpString.contains("Queen")){
-      //  tmpMoves = getQueenMoves(s.getXC(), s.getYC(), s.getName());
+        tmpMoves = getQueenMoves(s.getXC(), s.getYC(), s.getName());
       }
       else if(tmpString.contains("King")){
         tmpMoves = getKingSquares(s.getXC(), s.getYC(), s.getName());
