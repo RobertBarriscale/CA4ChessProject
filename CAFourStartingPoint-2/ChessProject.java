@@ -165,34 +165,46 @@ private Stack getPawnMoves(int x, int y, String piece){
     Stack moves = new Stack();
     Move validM, validM2, validM3, validM4;
     int tmpx = x;
+    int tmpx3 = x-1;
+    int tmpx2 = x+1;
     int tmpy = y+1;
     int tmpy1= y+2;
 
     if(!(tmpy > 7 || tmpy < 0)){ // This if statement handles the pawn moving down 1 square
-      Square tmp3 = new Square(tmpx, tmpy, piece);
-      validM2 = new Move(startingSquare, tmp3);
-      if(!piecePresent(((tmp3.getXC()*75)+20), (((tmp3.getYC()*75)+20)))){
+      Square tmp = new Square(tmpx, tmpy, piece);
+      validM2 = new Move(startingSquare, tmp);
+      if(!piecePresent(((tmp.getXC()*75)+20), (((tmp.getYC()*75)+20)))){
         moves.push(validM2);
       }
-      /*else{
-        if(checkWhiteOponent(((tmp3.getXC()*75)+20), ((tmp3.getYC()*75)+20))){
-          moves.push(validM2);
-        }
-      } */
     }
 
     if(!(tmpy > 7 || tmpy < 0)){//This handles the movement for the pawn on its starting point
       if(y==1){
-        Square tmp3 = new Square(tmpx, tmpy1, piece);
-        Square tmp4 = new Square(tmpx, tmpy, piece);
-        validM = new Move(startingSquare, tmp3);
-        if(!piecePresent(((tmp3.getXC()*75)+20), (((tmp3.getYC()*75)+20))) && !piecePresent(((tmp4.getXC()*75)+20), (((tmp4.getYC()*75)+20)))){
+        Square tmp = new Square(tmpx, tmpy1, piece);
+        Square tmp2 = new Square(tmpx, tmpy, piece);
+        validM = new Move(startingSquare, tmp);
+        if(!piecePresent(((tmp.getXC()*75)+20), (((tmp.getYC()*75)+20))) && !piecePresent(((tmp2.getXC()*75)+20), (((tmp2.getYC()*75)+20)))){
           moves.push(validM);
         }
-        else{
-          if(checkWhiteOponent(((tmp3.getXC()*75)+20), ((tmp3.getYC()*75)+20))){
-            moves.push(validM);
-          }
+      }
+    }
+
+    if(!(tmpy > 7 || tmpy < 0) && (!(tmpx3 > 7 || tmpx3 < 0))){
+      Square tmp = new Square(tmpx3, tmpy, piece);
+      validM3 = new Move(startingSquare, tmp);
+      if(piecePresent(((tmp.getXC()*75)+20), (((tmp.getYC()*75)+20)))) {
+        if (checkWhiteOponent(((tmp.getXC() * 75) + 20), ((tmp.getYC() * 75) + 20))) {
+          moves.push(validM3);
+        }
+      }
+    }
+
+    if(!(tmpy > 7 || tmpy < 0) && (!(tmpx2 > 7 || tmpx2 < 0))){
+      Square tmp = new Square(tmpx2, tmpy, piece);
+      validM4 = new Move(startingSquare, tmp);
+      if(piecePresent(((tmp.getXC()*75)+20), (((tmp.getYC()*75)+20)))) {
+        if (checkWhiteOponent(((tmp.getXC() * 75) + 20), ((tmp.getYC() * 75) + 20))) {
+          moves.push(validM4);
         }
       }
     }
