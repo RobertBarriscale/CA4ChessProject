@@ -181,7 +181,7 @@ private Stack getPawnMoves(int x, int y, String piece){
       } */
     }
 
-    if(!(tmpy > 7 || tmpy < 0)){//This is handles the movement for the pawn on its starting point
+    if(!(tmpy > 7 || tmpy < 0)){//This handles the movement for the pawn on its starting point
       if(y==1){
         Square tmp3 = new Square(tmpx, tmpy1, piece);
         Square tmp4 = new Square(tmpx, tmpy, piece);

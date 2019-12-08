@@ -4,8 +4,6 @@
     <list default="true" id="66c093b4-82db-4218-9b9b-ea8c0b86903f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/CAFourStartingPoint-2.iws" beforeDir="false" afterPath="$PROJECT_DIR$/CAFourStartingPoint-2.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChessProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessProject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/CAFourStartingPoint-2.iws" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/CAFourStartingPoint-2.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/ChessProject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAFourStartingPoint-2/ChessProject.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,5 +67,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ChessProject.java</url>
+          <line>188</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ChessProject.java</url>
+          <line>866</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
