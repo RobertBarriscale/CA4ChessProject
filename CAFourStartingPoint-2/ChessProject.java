@@ -160,13 +160,43 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
   bottom of the board it turns into a Queen (this should be handled where the move is actually being made and not in this
   method).
 */
-private Stack getWhitePawnSquares(int x, int y, String piece){
+private Stack getPawnMoves(int x, int y, String piece){
     Square startingSquare = new Square(x , y , piece);
     Stack moves = new Stack();
-    Move validM;
-    int tmpx = x+1;
-    //int tmpx2 = x-1; /* The pawn is only allowed to move in the x direction when capturing a piece */
-    int tmpy = y+1; /* The pawn is not allowed to move backwards */
+    Move validM, validM2, validM3, validM4;
+    int tmpx = x;
+    int tmpy = y+1;
+    int tmpy1= y+2;
+
+    if(!(tmpy > 7 || tmpy < 0)){ // This if statement handles the pawn moving down 1 square
+      Square tmp3 = new Square(tmpx, tmpy, piece);
+      validM2 = new Move(startingSquare, tmp3);
+      if(!piecePresent(((tmp3.getXC()*75)+20), (((tmp3.getYC()*75)+20)))){
+        moves.push(validM2);
+      }
+      /*else{
+        if(checkWhiteOponent(((tmp3.getXC()*75)+20), ((tmp3.getYC()*75)+20))){
+          moves.push(validM2);
+        }
+      } */
+    }
+
+    if(!(tmpy > 7 || tmpy < 0)){//This is handles the movement for the pawn on its starting point
+      if(y==1){
+        Square tmp3 = new Square(tmpx, tmpy1, piece);
+        Square tmp4 = new Square(tmpx, tmpy, piece);
+        validM = new Move(startingSquare, tmp3);
+        if(!piecePresent(((tmp3.getXC()*75)+20), (((tmp3.getYC()*75)+20))) && !piecePresent(((tmp4.getXC()*75)+20), (((tmp4.getYC()*75)+20)))){
+          moves.push(validM);
+        }
+        else{
+          if(checkWhiteOponent(((tmp3.getXC()*75)+20), ((tmp3.getYC()*75)+20))){
+            moves.push(validM);
+          }
+        }
+      }
+    }
+
 
 // To be completed...
     /*
@@ -186,16 +216,6 @@ private Stack getWhitePawnSquares(int x, int y, String piece){
      diagonal to it.
 
      */
-
-    if(!((tmpy > 7))){//this prevents the piece from falling off the board
-      if(y==1){
-        Square tmp = new Square(tmpx, tmpy, piece);
-        validM = new Move(startingSquare, tmp);
-        if(!piecePresent(((tmp.getXC()*75)+20), ((tmp.getYC()*75)+20))){
-          moves.push(validM);
-        }
-      }
-    }
 
   return moves;
 }
@@ -823,7 +843,7 @@ private void getLandingSquares(Stack found){
     return squares;
   }
 
-     /* private Stack getWhiteAttackingSquares(Stack pieces){
+      /*private Stack getWhiteAttackingSquares(Stack pieces){
         while(!pieces.empty()){
             Square s = (Square)pieces.pop();
             String tmpString = s.getName();
@@ -918,6 +938,7 @@ private void printStack(Stack input){
         tmpMoves = getBishopMoves(s.getXC(), s.getYC(), s.getName());
       }
       else if(tmpString.contains("Pawn")){
+        tmpMoves = getPawnMoves(s.getXC(), s.getYC(), s.getName());
       }
       else if(tmpString.contains("Rook")){
         tmpMoves = getRookMoves(s.getXC(), s.getYC(), s.getName());
