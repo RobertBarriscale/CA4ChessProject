@@ -170,7 +170,8 @@ private Stack getPawnMoves(int x, int y, String piece){
     int tmpy = y+1;
     int tmpy1= y+2;
 
-    if(!(tmpy > 7 || tmpy < 0)){ // This if statement handles the pawn moving down 1 square
+    // This if statement handles the pawn moving down 1 square
+    if(!(tmpy > 7 || tmpy < 0)){
       Square tmp = new Square(tmpx, tmpy, piece);
       validM2 = new Move(startingSquare, tmp);
       if(!piecePresent(((tmp.getXC()*75)+20), (((tmp.getYC()*75)+20)))){
@@ -178,20 +179,24 @@ private Stack getPawnMoves(int x, int y, String piece){
       }
     }
 
-    if(!(tmpy > 7 || tmpy < 0)){//This handles the movement for the pawn on its starting point
+    //This handles the movement for the pawn on its starting point
+    if(!(tmpy > 7 || tmpy < 0)){
       if(y==1){
         Square tmp = new Square(tmpx, tmpy1, piece);
         Square tmp2 = new Square(tmpx, tmpy, piece);
         validM = new Move(startingSquare, tmp);
+        //This checks the square immediately in front of the pawn then the next square after that to see if there is a piece in the way
         if(!piecePresent(((tmp.getXC()*75)+20), (((tmp.getYC()*75)+20))) && !piecePresent(((tmp2.getXC()*75)+20), (((tmp2.getYC()*75)+20)))){
           moves.push(validM);
         }
       }
     }
 
+    // The purpose of this is to allow the pawn to move diagonally to the left but ONLY when it is take a piece/ there is an opponents piece in the square
     if(!(tmpy > 7 || tmpy < 0) && (!(tmpx3 > 7 || tmpx3 < 0))){
       Square tmp = new Square(tmpx3, tmpy, piece);
       validM3 = new Move(startingSquare, tmp);
+      //if there is a piece present, check if it is an enemy piece
       if(piecePresent(((tmp.getXC()*75)+20), (((tmp.getYC()*75)+20)))) {
         if (checkWhiteOponent(((tmp.getXC() * 75) + 20), ((tmp.getYC() * 75) + 20))) {
           moves.push(validM3);
@@ -199,6 +204,7 @@ private Stack getPawnMoves(int x, int y, String piece){
       }
     }
 
+    // The purpose of this is to allow the pawn to move diagonally to the right but ONLY when it is take a piece/ there is an opponents piece in the square
     if(!(tmpy > 7 || tmpy < 0) && (!(tmpx2 > 7 || tmpx2 < 0))){
       Square tmp = new Square(tmpx2, tmpy, piece);
       validM4 = new Move(startingSquare, tmp);
